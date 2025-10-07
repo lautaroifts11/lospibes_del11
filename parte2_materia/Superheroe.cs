@@ -6,27 +6,32 @@ using System.Threading.Tasks;
 
 namespace parte2_materia
 {
-    internal class Superheroe
+    internal class Superheroe: Heroe
     {
-        public string nombre;
+
         public string poder;
         //met. acc //tipo dato // nomb var
+        public Superpoder superpoder;
 
-        public Arma arma;
-
-        public Superheroe() { }
-
-        public Superheroe(string nombre, string poder, Arma arma)
-        {
-            this.nombre = nombre;
-            this.poder = poder;
-            this.arma = arma;
+        public Superheroe() {
+            this.superpoder = new Superpoder();
         }
 
-        public virtual void presentarse()
+        public Superheroe(string nombre, string poder, Arma arma, string superpower) : base(nombre, arma)
         {
-            Console.WriteLine("Hola, soy el superheroe " + this.nombre + " y mi poder secreto es: " + this.poder);
-            this.arma.disparar();
+            this.poder = poder;
+            this.superpoder= new Superpoder(superpower);
+        }
+
+        public override void presentarse()
+        {
+            base.presentarse();
+            Console.WriteLine("mi poder secreto es: " + this.poder+ " y mi superpoder es: "+ this.superpoder.nombre);
+        }
+
+        public override void pelear()
+        {
+            Console.WriteLine("Superheroe peleando");
         }
     }
 }
